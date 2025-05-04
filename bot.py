@@ -1,8 +1,14 @@
 from telegram import Update 
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes, MessageHandler, filters
 import random
+import random
 
-TOKEN = '8165603869:AAEWtmYn76DLjhtjPJg2cjtIE9mMImmrva0'
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+token = os.getenv("BOT_TOKEN")
+print(token)
 
 # Dados de jogadores da FURIA (simples)
 jogadores = {
@@ -125,7 +131,7 @@ async def resposta_quiz(update: Update, context: ContextTypes.DEFAULT_TYPE):
         del quiz_ativa[chat_id]
 
 # Inicia o bot
-app = ApplicationBuilder().token(TOKEN).build()
+app = ApplicationBuilder().token(token).build()
 
 app.add_handler(CommandHandler("start", start))
 app.add_handler(CommandHandler("menu", menu))
